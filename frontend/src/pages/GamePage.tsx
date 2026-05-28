@@ -7,7 +7,6 @@ import "./GamePage.css";
 import { useEffect, useRef, useState } from "react";
 import { Link, Navigate } from "react-router";
 import { submitLeaderboard } from "../api/leaderboards";
-import { ApiError } from "../api/client";
 
 function GamePage() {
   const {
@@ -32,18 +31,20 @@ function GamePage() {
     if (status === "playing" || submittedRef.current || !name) return;
     submittedRef.current = true;
 
-    submitLeaderboard(name)
-      .then(() => setSubmitState("done"))
-      .catch((err: unknown) => {
-        if (err instanceof ApiError && err.status === 409) {
-          setSubmitState("done");
-        } else {
-          setSubmitState("error");
-        }
-      });
+    (async () => {
+      try {
+        await submitLeaderboard(name);
+        setSubmitState("done");
+      } catch {
+        setSubmitState("error");
+      }
+    })();
   }, [status, name]);
 
-  if (name === "") return <Navigate to="/" replace />;
+  /*
+    TODO: Validate that the user has already entered their name,
+    If they haven't entered their name, redirect to the Landing Page
+   */
 
   const isOver = status !== "playing";
 

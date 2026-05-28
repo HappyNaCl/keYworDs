@@ -2,8 +2,7 @@ import { api } from "./client";
 
 export type ServerLetterScore = "hit" | "present" | "miss";
 export type ServerGameStatus = "IN_PROGRESS" | "WON" | "LOST";
-
-export type ServerGuess = {
+type ServerGuess = {
   guess: string;
   pattern: ServerLetterScore[];
 };
@@ -18,13 +17,10 @@ export type GameState = {
   answer?: string;
 };
 
-export function startGame() {
-  return api<GameState>("/games", { method: "POST" });
+export function startGame(): Promise<GameState> {
+  // TODO: POST /games endpoint with an empty body and return the response
 }
 
-export function submitGuess(guess: string) {
-  return api<GameState>("/games/guesses", {
-    method: "POST",
-    body: JSON.stringify({ guess }),
-  });
+export function submitGuess(guess: string): Promise<GameState> {
+  // TODO: POST /games/guesses endpoint with the guess and return the response
 }

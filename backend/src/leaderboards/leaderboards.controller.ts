@@ -1,13 +1,4 @@
-import {
-  Body,
-  Controller,
-  DefaultValuePipe,
-  Get,
-  ParseIntPipe,
-  Post,
-  Query,
-  Req,
-} from "@nestjs/common";
+import { Body, Controller, Get, Post, Req } from "@nestjs/common";
 import type { Request } from "express";
 import { LeaderboardsService } from "./leaderboards.service";
 import { CreateLeaderboardDto } from "./dto/create-leaderboard.dto";
@@ -23,12 +14,8 @@ export class LeaderboardsController {
   }
 
   @Get()
-  findAll(
-    @Query("date") date: string | undefined,
-    @Query("limit", new DefaultValuePipe(50), ParseIntPipe) limit: number,
-    @Query("sort") sort: string | undefined,
-    @Query("dir") dir: string | undefined,
-  ) {
-    return this.leaderboardsService.findByDate(date, limit, sort, dir);
+  findAll() {
+    // TODO: Make an endpoint to get all leaderboards by date.
+    return this.leaderboardsService.findByDate();
   }
 }

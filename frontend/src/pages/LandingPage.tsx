@@ -2,12 +2,10 @@ import { useState, type SubmitEvent } from "react";
 import { useUser } from "../context/useUser";
 import Logo from "../components/ui/Logo";
 import "./LandingPage.css";
-import { useNavigate } from "react-router";
 
 function LandingPage() {
   const { name, setName } = useUser();
   const [draft, setDraft] = useState(name);
-  const navigate = useNavigate();
 
   const handleSubmit = (event: SubmitEvent) => {
     event.preventDefault();
@@ -16,7 +14,6 @@ function LandingPage() {
     setName(trimmed);
 
     // TODO: Redirect to Game Page
-    navigate("/game");
   };
 
   return (

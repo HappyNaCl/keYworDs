@@ -50,16 +50,17 @@ export function useWordleGame() {
 
   useEffect(() => {
     let cancelled = false;
-    startGame()
-      .then((state) => {
+    (async () => {
+      try {
+        const state = await startGame();
         if (!cancelled) setGame(state);
-      })
-      .catch((err: unknown) => {
+      } catch (err: unknown) {
         if (cancelled) return;
         showToast(
           err instanceof ApiError ? err.message : "Could not start the game",
         );
-      });
+      }
+    })();
     return () => {
       cancelled = true;
     };
