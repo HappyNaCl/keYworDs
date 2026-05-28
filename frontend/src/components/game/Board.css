@@ -1,0 +1,10 @@
+.board {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.board-row {
+  display: flex;
+  gap: 0.4rem;
+}

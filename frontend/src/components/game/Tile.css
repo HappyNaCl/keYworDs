@@ -1,0 +1,42 @@
+.tile {
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: 2px solid var(--color-border);
+  color: var(--color-text);
+  background: transparent;
+  border-radius: 4px;
+  line-height: 1;
+  user-select: none;
+  transition:
+    background-color 200ms ease,
+    border-color 200ms ease,
+    transform 120ms ease;
+}
+
+.tile--tbd {
+  border-color: #565758;
+}
+
+.tile--correct {
+  background: var(--color-tile-green);
+  border-color: var(--color-tile-green);
+  color: #ffffff;
+}
+
+.tile--present {
+  background: var(--color-tile-yellow);
+  border-color: var(--color-tile-yellow);
+  color: #ffffff;
+}
+
+.tile--absent {
+  background: #3a3a3c;
+  border-color: #3a3a3c;
+  color: #ffffff;
+}

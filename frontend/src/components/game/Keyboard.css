@@ -1,0 +1,61 @@
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  width: 100%;
+  max-width: 30rem;
+}
+
+.keyboard-row {
+  display: flex;
+  gap: 0.3rem;
+  justify-content: center;
+}
+
+.key {
+  flex: 1;
+  min-width: 0;
+  min-height: 3.5rem;
+  padding: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text);
+  background-color: #818384;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background-color 150ms ease,
+    transform 100ms ease,
+    filter 100ms ease;
+}
+
+.key:hover {
+  filter: brightness(1.1);
+}
+
+.key:active {
+  transform: translateY(1px);
+}
+
+.key--wide {
+  flex: 1.5;
+  font-size: 0.75rem;
+}
+
+.key--correct {
+  background-color: var(--color-tile-green);
+  color: #ffffff;
+}
+
+.key--present {
+  background-color: var(--color-tile-yellow);
+  color: #ffffff;
+}
+
+.key--absent {
+  background-color: #3a3a3c;
+  color: #d3d6da;
+}

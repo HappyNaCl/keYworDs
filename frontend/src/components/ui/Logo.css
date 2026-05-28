@@ -1,0 +1,47 @@
+.logo {
+  display: inline-flex;
+  gap: 0.35rem;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  user-select: none;
+}
+
+.logo-tile {
+  width: 2.75rem;
+  height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: 2px solid var(--color-border);
+  color: var(--color-text);
+  background: transparent;
+  border-radius: 4px;
+  line-height: 1;
+}
+
+.logo-tile--yellow {
+  background: var(--color-tile-yellow);
+  border-color: var(--color-tile-yellow);
+  color: #ffffff;
+}
+
+.logo-tile--green {
+  background: var(--color-tile-green);
+  border-color: var(--color-tile-green);
+  color: #ffffff;
+}
+
+.logo--sm .logo-tile {
+  width: 1.75rem;
+  height: 1.75rem;
+  font-size: 1.1rem;
+  border-radius: 3px;
+}
+
+.logo--lg .logo-tile {
+  width: 3.5rem;
+  height: 3.5rem;
+  font-size: 2.25rem;
+}

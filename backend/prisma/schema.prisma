@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+enum GameStatus {
+  IN_PROGRESS
+  WON
+  LOST
+}
+
+model Word {
+  id        Int       @id @default(autoincrement())
+  text      String    @unique @db.VarChar(16)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  dayWords  DayWord[]
+}
+
+model DayWord {
+  id           Int           @id @default(autoincrement())
+  date         DateTime      @unique @db.Date
+  wordId       Int
+  createdAt    DateTime      @default(now())
+
+  word         Word          @relation(fields: [wordId], references: [id])
+  leaderboards Leaderboard[]
+  sessions     GameSession[]
+
+  @@index([wordId])
+}
+
+model GameSession {
+  id           String       @id @default(uuid()) @db.VarChar(36)
+  dayWordId    Int
+  attemptsUsed Int          @default(0)
+  status       GameStatus   @default(IN_PROGRESS)
+  guesses      Json
+  startedAt    DateTime     @default(now())
+  finishedAt   DateTime?
+
+  dayWord      DayWord      @relation(fields: [dayWordId], references: [id])
+  leaderboard  Leaderboard?
+
+  @@index([dayWordId, status])
+}
+
+model Leaderboard {
+  id            Int      @id @default(autoincrement())
+  playerName    String   @db.VarChar(32)
+  attempts      Int
+  won           Boolean  @default(true)
+  dayWordId     Int
+  gameSessionId String   @unique @db.VarChar(36)
+  createdAt     DateTime @default(now())
+
+  dayWord     DayWord     @relation(fields: [dayWordId], references: [id])
+  gameSession GameSession @relation(fields: [gameSessionId], references: [id])
+
+  @@index([dayWordId, attempts])
+  @@index([playerName])
+}

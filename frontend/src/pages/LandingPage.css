@@ -1,0 +1,89 @@
+.name-input {
+  --form-width: 26rem;
+
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.name-input p {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+.name-input .tagline {
+  width: var(--form-width);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  padding-left: 0.32em;
+  padding-bottom: 2em;
+}
+
+.name-input .tagline span {
+  color: var(--color-primary);
+  margin: 0 0.25em;
+}
+
+.name-input form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: var(--form-width);
+}
+
+.name-input label {
+  text-align: left;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.name-input input {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 120ms ease;
+}
+
+.name-input input:focus {
+  border-color: var(--color-primary);
+}
+
+.name-input button {
+  margin-top: 0.75em;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-primary-contrast);
+  background-color: var(--color-primary);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 120ms ease;
+}
+
+.name-input button:hover:not(:disabled) {
+  background-color: var(--color-primary-hover);
+}
+
+.name-input button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.name-input .greeting {
+  color: var(--color-primary);
+  font-weight: 600;
+}
