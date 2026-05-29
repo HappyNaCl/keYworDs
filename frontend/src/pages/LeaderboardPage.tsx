@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import {
   fetchLeaderboard,
-  type LeaderboardDir,
   type LeaderboardEntry,
   type LeaderboardSort,
 } from "../api/leaderboards";
@@ -23,7 +22,6 @@ function LeaderboardPage() {
   const [entries, setEntries] = useState<LeaderboardEntry[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [sortKey, setSortKey] = useState<LeaderboardSort>("attempts");
-  const [sortDir, setSortDir] = useState<LeaderboardDir>("asc");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -31,7 +29,7 @@ function LeaderboardPage() {
     setLoading(true);
     setError(null);
 
-    fetchLeaderboard({ sort: sortKey, dir: sortDir })
+    fetchLeaderboard({ sort: sortKey })
       .then((rows) => {
         if (!cancelled) setEntries(rows);
       })
@@ -48,19 +46,7 @@ function LeaderboardPage() {
     return () => {
       cancelled = true;
     };
-  }, [sortKey, sortDir]);
-
-  const handleSort = (key: LeaderboardSort) => {
-    if (key === sortKey) {
-      setSortDir((d) => (d === "asc" ? "desc" : "asc"));
-    } else {
-      setSortKey(key);
-      setSortDir("asc");
-    }
-  };
-
-  const indicator = (key: LeaderboardSort) =>
-    key !== sortKey ? "" : sortDir === "asc" ? " ▲" : " ▼";
+  }, [sortKey]);
 
   return (
     <main className="leaderboard-page">
@@ -90,22 +76,16 @@ function LeaderboardPage() {
                 <th
                   key={c.key}
                   className={`leaderboard-page__th leaderboard-page__th--${c.align ?? "left"}`}
-                  aria-sort={
-                    sortKey === c.key
-                      ? sortDir === "asc"
-                        ? "ascending"
-                        : "descending"
-                      : "none"
-                  }
+                  aria-sort={sortKey === c.key ? "ascending" : "none"}
                 >
                   <button
                     type="button"
                     className="leaderboard-page__sort-btn"
-                    onClick={() => handleSort(c.key)}
+                    onClick={() => setSortKey(c.key)}
                     disabled={loading}
                   >
                     {c.label}
-                    {indicator(c.key)}
+                    {sortKey === c.key ? " ▲" : ""}
                   </button>
                 </th>
               ))}
