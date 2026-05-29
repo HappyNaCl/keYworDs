@@ -8,14 +8,16 @@ import {
 import { GameStatus, Prisma } from "../generated/prisma/client";
 import { PrismaService } from "../prisma/prisma.service";
 
-const SORTABLE: Record<string, keyof Prisma.LeaderboardOrderByWithRelationInput> = {
+const SORTABLE: Record<
+  string,
+  keyof Prisma.LeaderboardOrderByWithRelationInput
+> = {
   playerName: "playerName",
   attempts: "attempts",
   won: "won",
   createdAt: "createdAt",
 };
 export type LeaderboardSortKey = keyof typeof SORTABLE;
-export type SortDir = "asc" | "desc";
 
 @Injectable()
 export class LeaderboardsService {
@@ -57,12 +59,7 @@ export class LeaderboardsService {
     });
   }
 
-  async findByDate(
-    date?: string,
-    limit = 50,
-    sort?: string,
-    dir?: string,
-  ) {
+  async findByDate(date?: string, limit = 50, sort?: string) {
     const target = date ? new Date(date) : new Date();
     if (Number.isNaN(target.getTime())) {
       throw new BadRequestException("date must be a valid YYYY-MM-DD string");
@@ -70,7 +67,6 @@ export class LeaderboardsService {
     target.setHours(0, 0, 0, 0);
 
     const sortKey = sort && sort in SORTABLE ? SORTABLE[sort] : "attempts";
-    const sortDir: SortDir = dir === "desc" ? "desc" : "asc";
 
     const dayWord = await this.prisma.dayWord.findUnique({
       where: { date: target },
@@ -81,7 +77,7 @@ export class LeaderboardsService {
 
     return this.prisma.leaderboard.findMany({
       where: { dayWordId: dayWord.id },
-      orderBy: [{ [sortKey]: sortDir }, { createdAt: "asc" }],
+      orderBy: [{ [sortKey]: "asc" }, { createdAt: "asc" }],
       take: limit,
     });
   }

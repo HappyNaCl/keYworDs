@@ -27,8 +27,7 @@ export class LeaderboardsController {
     @Query("date") date: string | undefined,
     @Query("limit", new DefaultValuePipe(50), ParseIntPipe) limit: number,
     @Query("sort") sort: string | undefined,
-    @Query("dir") dir: string | undefined,
   ) {
-    return this.leaderboardsService.findByDate(date, limit, sort, dir);
+    return this.leaderboardsService.findByDate(date, limit, sort);
   }
 }
