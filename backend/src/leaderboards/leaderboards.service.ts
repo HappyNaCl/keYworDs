@@ -6,7 +6,7 @@ export class LeaderboardsService {
 
   async create(sessionId: string | undefined, playerName: string) {
     /*
-      TODO: Make a leaderboard entry by following these steps
+      TODO (No. 10): Make a leaderboard entry by following these steps
       1. Validate if sessionId exists, if it doesn't exist return an Unauthorized response
       2. Validate that the playerName is not empty, if it is return a Bad Request response
       3. Get the gameSession based on sessionId
@@ -19,6 +19,9 @@ export class LeaderboardsService {
   }
 
   async findByDate() {
-    // Date will default to today, this endpoint should be able to handle sort by attempt or createdBy
+    // TODO (No. 11): Get all leaderboard entries while following these specifications
+    // 1. sort by attempt or createdBy
+    // 2. limits result to only N numbers
+    // 3. filtered by date
   }
 }

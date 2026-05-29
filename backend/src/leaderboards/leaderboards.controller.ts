@@ -15,7 +15,6 @@ export class LeaderboardsController {
 
   @Get()
   findAll() {
-    // TODO: Make an endpoint to get all leaderboards by date.
     return this.leaderboardsService.findByDate();
   }
 }
