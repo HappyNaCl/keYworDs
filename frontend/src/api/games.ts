@@ -18,7 +18,7 @@ export type GameState = {
 };
 
 export function startGame(): Promise<GameState> {
-  // TODO: POST /games endpoint with an empty body and return the response
+  // TODO (No. 5): POST /games endpoint with an empty body and return the response
 }
 
 export function submitGuess(guess: string): Promise<GameState> {

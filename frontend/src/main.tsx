@@ -4,6 +4,6 @@ import "./index.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    {/* TODO: Setup the routing for all 3 pages, make sure to wrap it in the UserContext provider! */}
+    {/* TODO (No. 1): Setup the routing for all 3 pages, make sure to wrap it in the UserContext provider! */}
   </StrictMode>,
 );

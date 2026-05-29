@@ -23,8 +23,7 @@ export async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
   const body = text ? (JSON.parse(text) as unknown) : null;
 
   if (!res.ok) {
-    const message =
-      (body as { message?: string } | null)?.message ?? res.statusText;
+    const message = body?.message ?? res.statusText;
     throw new ApiError(res.status, message);
   }
 

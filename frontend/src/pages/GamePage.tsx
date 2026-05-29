@@ -5,7 +5,7 @@ import Keyboard from "../components/game/Keyboard";
 import Toast from "../components/ui/Toast";
 import "./GamePage.css";
 import { useEffect, useRef, useState } from "react";
-import { Link, Navigate } from "react-router";
+import { Link } from "react-router";
 import { submitLeaderboard } from "../api/leaderboards";
 
 function GamePage() {
@@ -42,9 +42,9 @@ function GamePage() {
   }, [status, name]);
 
   /*
-    TODO: Validate that the user has already entered their name,
+    TODO (No. 4): Validate that the user has already entered their name,
     If they haven't entered their name, redirect to the Landing Page
-   */
+  */
 
   const isOver = status !== "playing";
 

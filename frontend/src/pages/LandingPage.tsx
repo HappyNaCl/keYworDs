@@ -1,19 +1,16 @@
-import { useState, type SubmitEvent } from "react";
-import { useUser } from "../context/useUser";
+import { type SubmitEvent } from "react";
 import Logo from "../components/ui/Logo";
 import "./LandingPage.css";
 
 function LandingPage() {
-  const { name, setName } = useUser();
-  const [draft, setDraft] = useState(name);
-
   const handleSubmit = (event: SubmitEvent) => {
-    event.preventDefault();
-    const trimmed = draft.trim();
-    if (!trimmed) return;
-    setName(trimmed);
-
-    // TODO: Redirect to Game Page
+    /* 
+      TODO (No. 2): 
+       1. Get the player's name from the input
+       2. Validate the player's name is not empty
+       3. Save the player's name to UserContext
+       4. Redirect to Game Page 
+    */
   };
 
   return (
@@ -29,14 +26,11 @@ function LandingPage() {
         <input
           id="player-name"
           type="text"
-          value={draft}
-          onChange={(event) => setDraft(event.target.value)}
           placeholder="e.g. John Doe"
           autoFocus
         />
-        <button type="submit" disabled={!draft.trim()}>
-          PLAY
-        </button>
+        {/* TODO (No. 3): Set the button to be disabled when input above is still empty */}
+        <button type="submit">PLAY</button>
       </form>
     </main>
   );
