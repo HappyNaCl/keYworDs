@@ -7,10 +7,12 @@ import {
   Param,
   Delete,
 } from "@nestjs/common";
+import { ApiTags } from "@nestjs/swagger";
 import { WordsService } from "./words.service";
 import { CreateWordDto } from "./dto/create-word.dto";
 import { UpdateWordDto } from "./dto/update-word.dto";
 
+@ApiTags("words")
 @Controller("words")
 export class WordsController {
   constructor(private readonly wordsService: WordsService) {}
